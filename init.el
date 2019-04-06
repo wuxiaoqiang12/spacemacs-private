@@ -37,6 +37,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ivy
+     coq
      auto-completion
      (better-defaults :variables better-defaults-move-to-end-of-code-firs t)
      emacs-lisp
@@ -128,8 +129,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(gruvbox
-                         zenburn
+   dotspacemacs-themes '(zenburn
                          gruvbox-dark-hard
                          spacemacs-dark
                          spacemacs-light)
@@ -138,6 +138,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("WenQuanYi Micro Hei Mono"
+                               ;;"Source Code Pro"
                                :size 17
                                :weight normal
                                :width normal
@@ -264,7 +265,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -310,8 +311,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
   (setq tramp-ssh-controlmaster-options
-        "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-  (load "/home/jon/.emacs.d/elpa/proof-general-20190212.1433/generic/proof-site")
+        "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no") 
   )
 
 (defun dotspacemacs/user-config ()

@@ -30,30 +30,15 @@
 ;;; Code:
 
 (defconst xiaoqiangwu-packages
-  '(proof-general
-    company
-    company-coq
+  '(company
     hungry-delete
     flycheck
-    youdao-dictionary
-    gruvbox-theme)
+    youdao-dictionary)
 )
-
-
-(defun xiaoqiangwu/init-proof-general()
-  (use-package proof-general
-    :ensure t
-    :config))
 
 (defun xiaoqiangwu/post-init-company()
   (setq company-minimum-prefix-length 1)
   (global-company-mode))
-
-(defun xiaoqiangwu/init-company-coq()
-  (use-package company-coq
-    :ensure t
-    :config
-    (add-hook 'coq-mode-hook #'company-coq-mode)))
 
 (defun xiaoqiangwu/post-init-hungry-delete()
   (global-hungry-delete-mode))
@@ -63,4 +48,5 @@
 
 (defun xiaoqiangwu/post-init-youdao-dictionary()
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point))
+
 ;;; packages.el ends here

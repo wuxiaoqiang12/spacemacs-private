@@ -8,6 +8,7 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
+(global-linum-mode t)
 (defun occur-dwim ()
   "Call `occur' with a sane default."
   (interactive)
