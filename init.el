@@ -38,7 +38,7 @@ values."
      ;; ----------------------------------------------------------------
      ivy
      auto-completion
-     better-defaults
+     (better-defaults :variables better-defaults-move-to-end-of-code-firs t)
      emacs-lisp
      git
      markdown
