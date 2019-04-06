@@ -34,7 +34,9 @@
     company
     company-coq
     hungry-delete
-    flycheck)
+    flycheck
+    youdao-dictionary
+    gruvbox-theme)
 )
 
 
@@ -58,4 +60,7 @@
 
 (defun xiaoqiangwu/post-init-flycheck()
   (add-hook 'coq-mode-hook 'flycheck-mode))
+
+(defun xiaoqiangwu/post-init-youdao-dictionary()
+  (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point))
 ;;; packages.el ends here
