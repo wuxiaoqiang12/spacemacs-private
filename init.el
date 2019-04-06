@@ -48,6 +48,7 @@ values."
      ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
+     xiaoqiangwu
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -58,7 +59,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(vi-tilde-fringe)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -260,7 +261,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -307,6 +308,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+  (load "/home/jon/.emacs.d/elpa/proof-general-20190212.1433/generic/proof-site")
   )
 
 (defun dotspacemacs/user-config ()
@@ -318,6 +320,10 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setcdr evil-insert-state-map nil)
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
+  (cua-mode t)
+  (setq-default cua-auto-tabify-rectangles nil)
+  (transient-mark-mode 1)
+  (setq-default cua-keep-region-after-copy t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
