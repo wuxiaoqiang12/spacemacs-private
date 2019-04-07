@@ -50,9 +50,6 @@
 (defun xiaoqiangwu/post-init-youdao-dictionary()
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point))
 
-;;(defun xiaoqiangwu/post-init-highlight-parentheses()
-;;  (add-hook 'coq-mode-hook 'highlight-parentheses-mode))
-
 (defun xiaoqiangwu/post-init-org()
 
   (setq org-agenda-files '("~/org"))
