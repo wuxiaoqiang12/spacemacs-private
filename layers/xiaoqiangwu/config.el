@@ -21,3 +21,11 @@
               (regexp-quote sym))))
         regexp-history)
   (call-interactively 'occur))
+
+(add-hook 'coq-mode-hook
+          '(lambda ()
+             (highlight-parentheses-mode)
+             (setq autopair-handle-action-fns
+                   (list 'autopair-default-handle-action
+                         '(lambda (action pair pos-before)
+                            (hl-paren-color-update))))))
