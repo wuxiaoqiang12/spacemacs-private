@@ -8,7 +8,7 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
-(global-linum-mode t)
+;;(global-linum-mode t)
 (defun occur-dwim ()
   "Call `occur' with a sane default."
   (interactive)
@@ -29,3 +29,6 @@
                    (list 'autopair-default-handle-action
                          '(lambda (action pair pos-before)
                             (hl-paren-color-update))))))
+;;(setq smartparens-global-mode t)
+;; fix hungry-delete & smartparents conflict
+(defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
