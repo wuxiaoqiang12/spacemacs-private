@@ -32,3 +32,4 @@
 ;;(setq smartparens-global-mode t)
 ;; fix hungry-delete & smartparents conflict
 (defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
+

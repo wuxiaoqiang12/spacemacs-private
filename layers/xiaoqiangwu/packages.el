@@ -35,20 +35,30 @@
     flycheck
     org
     pyim
+    abbrev
     youdao-dictionary)
 )
 
 (defun xiaoqiangwu/post-init-company()
   (setq company-minimum-prefix-length 1)
   (global-company-mode)
-  (spacemacs|diminish company-mode "Ⓒ" "C"))
+  ;;(spacemacs|diminish company-mode "Ⓒ" "C")
+  )
 
 (defun xiaoqiangwu/post-init-hungry-delete()
   (global-hungry-delete-mode)
-  (spacemacs|diminish hungry-delete-mode "Ⓗ" "H"))
+  ;;(spacemacs|diminish hungry-delete-mode "Ⓗ" "H")
+  )
 
 (defun xiaoqiangwu/post-init-flycheck()
   (add-hook 'coq-mode-hook 'flycheck-mode))
+
+(defun xiaoqiangwu/post-init-abbrev()
+  (use-package abbrev
+    :diminish abbrev-mode
+    :config
+    (if (file-exists-p abbrev-file-name)
+        (quietly-read-abbrev-file))))
 
 (defun xiaoqiangwu/post-init-youdao-dictionary()
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point))
@@ -111,7 +121,7 @@
     :config (pyim-basedict-enable))
 
   (setq default-input-method "pyim")
-  (spacemacs|diminish pyim-isearch-mode "Ⓘ" "I")
+  ;;(spacemacs|diminish pyim-isearch-mode "Ⓘ" "I")
   ;; 我使用全拼
   (setq pyim-default-scheme 'quanpin)
 
