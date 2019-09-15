@@ -29,6 +29,17 @@
                    (list 'autopair-default-handle-action
                          '(lambda (action pair pos-before)
                             (hl-paren-color-update))))))
+
+;;(require 'ggtags)
+(add-hook 'asm-mode-hook 'ggtags-mode)
+(add-hook 'c-mode-hook 'ggtags-mode)
+(add-hook 'c++-mode-hook 'ggtags-mode)
+(setq Tex-parse-self t)
+;;(add-hook 'coq-mode-hook 'ggtags-mode)
+;; (add-hook 'c-mode-common-hook
+;;           (lambda ()
+;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+;;               (ggtags-mode 1))))
 ;;(setq smartparens-global-mode t)
 ;; fix hungry-delete & smartparents conflict
 (defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
