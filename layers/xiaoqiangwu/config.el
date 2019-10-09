@@ -28,7 +28,7 @@
              (setq autopair-handle-action-fns
                    (list 'autopair-default-handle-action
                          '(lambda (action pair pos-before)
-                            (hl-paren-color-update))))))
+                            (Hl-paren-color-update))))))
 
 ;;(require 'ggtags)
 (add-hook 'asm-mode-hook 'ggtags-mode)

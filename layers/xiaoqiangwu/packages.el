@@ -36,7 +36,7 @@
     ;;org
     ;; pyim
     abbrev
-    ;; auctex
+    auctex
     ;; latex
     ;;ocaml
     ;;gtags
@@ -59,9 +59,10 @@
   ;;(spacemacs|diminish company-mode "Ⓒ" "C")
   )
 
-;; (defun xiaoqiangwu/post-init-auctex()
-;;   (remove-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
-;; )
+(defun xiaoqiangwu/post-init-auctex()
+  (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+  (add-hook 'LaTeX-mode-hook 'outline-hide-body)
+)
 
 ;; (defun xiaoqiangwu/post-init-latex()
 ;;   (setq TeX-global-PDF-mode nil)

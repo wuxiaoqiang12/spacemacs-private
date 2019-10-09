@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -47,7 +47,12 @@ This function should only modify configuration layer settings."
      ivy
      latex
      markdown
+     python
      c-c++
+     ;; (c-c++ :variables
+     ;;        c-c++-backend 'lsp-cquery
+     ;;        c-c++-lsp-executable(file-truename "/home/jon/Research/cquery/build/release/bin/cquery"))
+     cmake
      (gtags :variables gtags-enable-by-default nil)
      multiple-cursors
      ;; org
@@ -68,7 +73,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(dash-functional)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -205,7 +210,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.1)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -216,7 +221,6 @@ It should only modify the values of Spacemacs settings."
                                :size 16.0
                                :weight normal
                                :width normal)
-                               ;; :powerline-scale 1.1)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -459,7 +463,11 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  )
+(setq configuration-layer-elpa-archives
+      '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+        ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+        ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+)
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -490,6 +498,7 @@ before packages are loaded."
   (put 'dired-find-alternate-file 'disabled nil) ; disables warning
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
   (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
+  (setq gdb-use-separate-io-buffer 1)
   ;; (setq pop-up-frames nil)
   ;; (spacemacs/helm-gtags-define-keys-for-mode 'assembler)
   ;;(spacemacs/helm-gtags-define-keys-for-mode 'coq)

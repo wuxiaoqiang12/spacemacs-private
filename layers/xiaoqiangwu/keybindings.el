@@ -9,6 +9,11 @@
 ;;
 ;;; License: GPLv3
 (global-set-key (kbd "M-s o") 'occur-dwim)
+(spacemacs/set-leader-keys "oll" 'xiaoqiangwu/load-my-layout)
+(spacemacs/set-leader-keys "ols" 'xiaoqiangwu/save-my-layout)
+(global-set-key (kbd "M-.") 'ggtags-find-definition)
+(global-set-key (kbd "M-,") 'ggtags-prev-mark)
+;; (evil-define-key 'normal "C-v" ')
 ;; (global-set-key [F8] 'treemacs-projectile)
 ;;(global-set-key (kbd "C-p s g") 'projectile-grep)
 ;;(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
