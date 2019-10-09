@@ -62,7 +62,17 @@
 (setq gdb-use-colon-colon-notation t)
 (setq gdb-use-separate-io-buffer nil)
 ;; (setq gdb-delete-out-of-scope t)
+(setq gud-tooltip-display t)
 (setq gdb-speedbar-auto-raise t)
+
+(defadvice gud-display-line (after gud-display-line-centered activate)
+  "Center the line in the window"
+  (when (and gud-overlay-arrow-position gdb-source-window)
+    (with-selected-window gdb-source-window
+     ;; (marker-buffer gud-overlay-arrow-position)
+      (save-restriction
+        (goto-line (ad-get-arg 1))
+        (recenter)))))
 
 ;; GDB highlight current line
 (set-face-foreground 'secondary-selection "black")

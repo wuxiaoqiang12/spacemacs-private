@@ -54,7 +54,7 @@
   (exec-path-from-shell-initialize))
 
 (defun xiaoqiangwu/post-init-company()
-  (setq company-minimum-prefix-length 1)
+  (setq company-minimum-prefix-length 2)
   (global-company-mode)
   ;;(spacemacs|diminish company-mode "Ⓒ" "C")
   )

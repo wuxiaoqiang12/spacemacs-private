@@ -498,7 +498,7 @@ before packages are loaded."
   (put 'dired-find-alternate-file 'disabled nil) ; disables warning
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
   (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
-  (setq gdb-use-separate-io-buffer 1)
+  ;; (setq gdb-use-separate-io-buffer 1)
   ;; (setq pop-up-frames nil)
   ;; (spacemacs/helm-gtags-define-keys-for-mode 'assembler)
   ;;(spacemacs/helm-gtags-define-keys-for-mode 'coq)
