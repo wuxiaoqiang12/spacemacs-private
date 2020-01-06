@@ -95,6 +95,46 @@
       (delete-overlay gud-overlay)))
 (add-hook 'kill-buffer-hook 'gud-kill-buffer)
 
+(defun toggle-window-dedicated ()
+  "Control whether or not Emacs is allowed to display another
+buffer in current window."
+  (interactive)
+  (message
+   (if (let (window (get-buffer-window (current-buffer)))
+         (set-window-dedicated-p window (not (window-dedicated-p window))))
+       "%s: Can't touch this!"
+     "%s is up for grabs.")
+   (current-buffer)))
+
+(global-set-key (kbd "C-x t") 'toggle-window-dedicated)
+
+;; org mode functions
+(defun get-year-and-month ()
+  (list (format-time-string "%Y") (format-time-string "%m")))
+
+(defun find-month-tree ()
+  (let* ((path (get-year-and-month))
+         (level 1)
+         end)
+    (unless (derived-mode-p 'org-mode)
+      (error "Target buffer \"%s\" should be in Org mode" (current-buffer)))
+    (goto-char (point-min))             ;移动到 buffer 的开始位置
+    ;; 先定位表示年份的 headline，再定位表示月份的 headline
+    (dolist (heading path)
+      (let ((re (format org-complex-heading-regexp-format
+                        (regexp-quote heading)))
+            (cnt 0))
+        (if (re-search-forward re end t)
+            (goto-char (point-at-bol))  ;如果找到了 headline 就移动到对应的位置
+          (progn                        ;否则就新建一个 headline
+            (or (bolp) (insert "\n"))
+            (if (/= (point) (point-min)) (org-end-of-subtree t t))
+            (insert (make-string level ?*) " " heading "\n"))))
+      (setq level (1+ level))
+      (setq end (save-excursion (org-end-of-subtree t t))))
+    (org-end-of-subtree)))
+
+
 ;; 启动gdb-many-windows时加载的钩子函数，改变many-windows的默认布局，
 ;; 这个钩子函数不能勾在gdb-setup-windows，因为此时assamble-buffer还没
 ;; 完成初始化，不能set到window

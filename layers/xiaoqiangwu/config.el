@@ -31,6 +31,7 @@
                             (Hl-paren-color-update))))))
 
 ;;(require 'ggtags)
+(require 'org-tempo)
 (add-hook 'asm-mode-hook 'ggtags-mode)
 (add-hook 'c-mode-hook 'ggtags-mode)
 (add-hook 'c++-mode-hook 'ggtags-mode)
@@ -44,3 +45,4 @@
 ;; fix hungry-delete & smartparents conflict
 (defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
 
+(setq url-debug t)

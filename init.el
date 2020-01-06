@@ -42,20 +42,25 @@ This function should only modify configuration layer settings."
      (better-defaults :variables better-defaults-move-to-beginning-of-code-first t better-defaults-move-to-end-of-code-first t)
      coq
      emacs-lisp
+     (shell :variables
+            shell-default-shell 'eshell
+            shell-default-position 'bottom)
      git
      ;; helm
      ivy
      latex
+     bibtex
      markdown
      python
      c-c++
+     ;; myleetcode
      ;; (c-c++ :variables
      ;;        c-c++-backend 'lsp-cquery
      ;;        c-c++-lsp-executable(file-truename "/home/jon/Research/cquery/build/release/bin/cquery"))
      cmake
      (gtags :variables gtags-enable-by-default nil)
      multiple-cursors
-     ;; org
+     (org :variables org-enable-github-support t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -218,7 +223,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("Sarasa Mono SC"
-                               :size 16.0
+                               :size 18.0
                                :weight normal
                                :width normal)
 
@@ -370,7 +375,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -463,7 +468,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-(setq configuration-layer-elpa-archives
+(setq configuration-layer--elpa-archives
       '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
         ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
         ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))

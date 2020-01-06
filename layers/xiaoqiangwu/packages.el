@@ -33,19 +33,33 @@
   '(company
     hungry-delete
     flycheck
-    ;;org
+    org
     ;; pyim
     abbrev
     auctex
     ;; latex
     ;;ocaml
     ;;gtags
+    buffer-move
+    ;; leetcode
     youdao-dictionary
     exec-path-from-shell)
 )
 
 ;;(defun xiaoqiangwu/post-init-gtags()
   ;;(ggtags-mode))
+
+;; (defun xiaoqiangwu/post-init-leetcode()
+;;   (setq leetcode-prefer-language "python3"))
+(defun xiaoqiangwu/init-buffer-move()
+  (use-package buffer-move
+     :defer t
+     :init
+     (spacemacs/set-leader-keys "bh" 'buf-move-left)
+     (spacemacs/set-leader-keys "bj" 'buf-move-down)
+     (spacemacs/set-leader-keys "bk" 'buf-move-up)
+     (spacemacs/set-leader-keys "bl" 'buf-move-right))
+  )
 
 ;; (defun xiaoqiangwu/init-flycheck-ocaml()
 ;;   (add-hook 'ocaml-mode-local-vars-hook 'flycheck-mode))
@@ -59,10 +73,15 @@
   ;;(spacemacs|diminish company-mode "Ⓒ" "C")
   )
 
+;; (defun xiaoqiangwu/post-init-org()
+;;   (add-hook 'org-mode-hook 'auto-fill-mode)
+;;   (setq org-startup-indented t)
+;;   )
+
 (defun xiaoqiangwu/post-init-auctex()
   (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
   (add-hook 'LaTeX-mode-hook 'outline-hide-body)
-)
+  )
 
 ;; (defun xiaoqiangwu/post-init-latex()
 ;;   (setq TeX-global-PDF-mode nil)
@@ -91,38 +110,46 @@
   ;; (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point)
   )
 
-;; (defun xiaoqiangwu/post-init-org()
+(defun xiaoqiangwu/post-init-org()
 
-;;   (setq org-agenda-files '("~/org/gtd"))
+  (add-hook 'org-mode-hook 'auto-fill-mode)
+  (setq org-startup-indented t)
+  (add-hook 'org-mode-hook
+            (lambda () (setq truncate-lines nil)))
 
-;;   (setq org-todo-keywords
-;;         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-;;           (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
-  
-;;   (setq org-capture-templates
-;;         `(("i" "inbox" entry (file "~/org/gtd/inbox.org")
-;;            "* TODO %?")
-;;           ("c" "course" entry (file "~/org/gtd/course.org")
-;;            "* TODO %?")
-;;           ("r" "research" entry (file "~/org/gtd/research.org")
-;;            "* TODO %?")
-;;           ("l" "leisure" entry (file "~/org/gtd/leisure.org")
-;;            "* TODO %?")
-;;           ("t" "tricks" entry (file "~/org/gtd/tricks.org")
-;; 	         "* DONE %?")
-;;           ("p" "paper" entry (file "~/org/papers/papers.org")
-;;            "* TODO %(jethro/trim-citation-title \"%:title\")\n%a" :immediate-finish t)
-;;           ("e" "email" entry (file+headline "~/org/gtd/emails.org" "Emails")
-;;            "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
-;;           ("a" "link" entry (file "~/org/gtd/inbox.org")
-;;            "* TODO %(org-cliplink-capture)" :immediate-finish t)
-;;           ;;("z" "elfeed-link" entry (file "~/org/gtd/inbox.org")
-;;           ;; "* TODO %a\n" :immediate-finish t)
-;;           ("w" "Weekly Review" entry (file+olp+datetree "~/org/gtd/reviews.org")
-;;            (file "~/org/gtd/templates/weekly_review.org"))
-;;           ;;("s" "Snippet" entry (file "~/org/deft/capture.org")
-;;           ;;"* Snippet %<%Y-%m-%d %H:%M>\n%?")
-;;           ))
+  (setq org-agenda-files '("~/Dropbox/org/gtd"))
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+          (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
+
+  (setq org-capture-templates
+        `(("i" "inbox" entry (file "~/Dropbox/org/gtd/inbox.org")
+           "* TODO %?")
+          ("b" "Billing" plain
+           (file+function "~/Dropbox/org/billing.org" find-month-tree)
+           " | %U | %^{Type} | %^{Description} | %^{Amount} |" :kill-buffer t)
+          ("c" "course" entry (file "~/Dropbox/org/gtd/course.org")
+           "* TODO %?")
+          ("r" "research" entry (file "~/Dropbox/org/gtd/research.org")
+           "* TODO %?")
+          ("l" "leisure" entry (file "~/Dropbox/org/gtd/leisure.org")
+           "* TODO %?")
+          ("t" "tricks" entry (file "~/Dropbox/org/gtd/tricks.org")
+	         "* DONE %?")
+          ("p" "paper" entry (file "~/Dropbox/org/papers/papers.org")
+           "* TODO %(jethro/trim-citation-title \"%:title\")\n%a" :immediate-finish t)
+          ("e" "email" entry (file+headline "~/Dropbox/org/gtd/emails.org" "Emails")
+           "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
+          ("a" "link" entry (file "~/Dropbox/org/gtd/inbox.org")
+           "* TODO %(org-cliplink-capture)" :immediate-finish t)
+          ;;("z" "elfeed-link" entry (file "~/Dropbox/org/gtd/inbox.org")
+          ;; "* TODO %a\n" :immediate-finish t)
+          ("w" "Weekly Review" entry (file+olp+datetree "~/Dropbox/org/gtd/reviews.org")
+           (file "~/org/gtd/templates/weekly_review.org"))
+          ;;("s" "Snippet" entry (file "~/Dropbox/org/deft/capture.org")
+          ;;"* Snippet %<%Y-%m-%d %H:%M>\n%?")
+          ))
 
 ;;   ;;An entry without a cookie is treated just like priority ' B '.
 ;;   ;;So when create new task, they are default 重要且紧急
@@ -140,7 +167,9 @@
 ;;            ((stuck "") ;; review stuck projects as designated by org-stuck-projects
 ;;             (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
 ;;             ))))
-;;   )
+  )
+
+
 ;; DO NOT NEED PYIM AGAIN
 ;; (defun xiaoqiangwu/post-init-pyim()
 ;;   ;; 激活 basedict 拼音词库，五笔用户请继续阅读 README

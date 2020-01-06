@@ -13,8 +13,8 @@
 (spacemacs/set-leader-keys "ols" 'xiaoqiangwu/save-my-layout)
 (global-set-key (kbd "M-.") 'ggtags-find-definition)
 (global-set-key (kbd "M-,") 'ggtags-prev-mark)
-;; (evil-define-key 'normal "C-v" ')
-;; (global-set-key [F8] 'treemacs-projectile)
+
+(global-set-key [f5] 'treemacs-projectile)
 ;;(global-set-key (kbd "C-p s g") 'projectile-grep)
 ;;(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
 ;;(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
