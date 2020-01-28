@@ -13,7 +13,7 @@
 (spacemacs/set-leader-keys "ols" 'xiaoqiangwu/save-my-layout)
 (global-set-key (kbd "M-.") 'ggtags-find-definition)
 (global-set-key (kbd "M-,") 'ggtags-prev-mark)
-
+(spacemacs/set-leader-keys "ov" 'evil-visual-block)
 (global-set-key [f5] 'treemacs-projectile)
 ;;(global-set-key (kbd "C-p s g") 'projectile-grep)
 ;;(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)

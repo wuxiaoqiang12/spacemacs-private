@@ -117,6 +117,9 @@
   (add-hook 'org-mode-hook
             (lambda () (setq truncate-lines nil)))
 
+  (setcar (nthcdr 4 org-emphasis-regexp-components) 20)
+  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
   (setq org-agenda-files '("~/Dropbox/org/gtd"))
 
   (setq org-todo-keywords

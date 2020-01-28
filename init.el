@@ -59,6 +59,8 @@ This function should only modify configuration layer settings."
      ;;        c-c++-lsp-executable(file-truename "/home/jon/Research/cquery/build/release/bin/cquery"))
      cmake
      (gtags :variables gtags-enable-by-default nil)
+     (spacemacs-layouts :variables layouts-enable-autosave nil
+                        layouts-autosave-delay 300)
      multiple-cursors
      (org :variables org-enable-github-support t)
      ;; (shell :variables
