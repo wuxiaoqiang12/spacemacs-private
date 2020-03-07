@@ -31,12 +31,11 @@
                             (Hl-paren-color-update))))))
 
 ;;(require 'ggtags)
-(require 'org-tempo)
+;;(require 'org-tempo)
 (add-hook 'asm-mode-hook 'ggtags-mode)
 (add-hook 'c-mode-hook 'ggtags-mode)
 (add-hook 'c++-mode-hook 'ggtags-mode)
 (setq Tex-parse-self t)
-;;(add-hook 'coq-mode-hook 'ggtags-mode)
 ;; (add-hook 'c-mode-common-hook
 ;;           (lambda ()
 ;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)

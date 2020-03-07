@@ -47,16 +47,19 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      git
      ;; helm
+	 ;; lsp
      ivy
      latex
      bibtex
      markdown
      python
-     c-c++
-     ;; myleetcode
-     ;; (c-c++ :variables
-     ;;        c-c++-backend 'lsp-cquery
-     ;;        c-c++-lsp-executable(file-truename "/home/jon/Research/cquery/build/release/bin/cquery"))
+     (c-c++ :variables
+            tab-width 4
+            indent-tabs-mode t
+			c-basic-offset 4)
+			;; c-default-style "bsd")
+            ;; c-c++-backend 'lsp-cquery
+            ;; c-c++-lsp-executable(file-truename "/home/jon/Research/cquery/build/release/bin/cquery"))
      cmake
      (gtags :variables gtags-enable-by-default nil)
      (spacemacs-layouts :variables layouts-enable-autosave nil

@@ -15,6 +15,9 @@
 (global-set-key (kbd "M-,") 'ggtags-prev-mark)
 (spacemacs/set-leader-keys "ov" 'evil-visual-block)
 (global-set-key [f5] 'treemacs-projectile)
+(global-set-key [mouse-8] 'evil-jump-backward)
+(global-set-key [mouse-9] 'evil-jump-forward)
+
 ;;(global-set-key (kbd "C-p s g") 'projectile-grep)
 ;;(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
 ;;(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)

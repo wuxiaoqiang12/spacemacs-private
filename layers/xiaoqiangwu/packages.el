@@ -34,13 +34,14 @@
     hungry-delete
     flycheck
     org
-    ;; pyim
     abbrev
     auctex
     ;; latex
     ;;ocaml
     ;;gtags
+	dired
     buffer-move
+	treemacs-icons-dired
     ;; leetcode
     youdao-dictionary
     exec-path-from-shell)
@@ -48,6 +49,11 @@
 
 ;;(defun xiaoqiangwu/post-init-gtags()
   ;;(ggtags-mode))
+
+(defun xiaoqiangwu/post-init-dired()
+  (add-hook 'dired-mode-hook 'treemacs-icons-dired-mode))
+
+(defun xiaoqiangwu/init-treemacs-icons-dired())
 
 ;; (defun xiaoqiangwu/post-init-leetcode()
 ;;   (setq leetcode-prefer-language "python3"))
@@ -112,65 +118,65 @@
 
 (defun xiaoqiangwu/post-init-org()
 
-  (add-hook 'org-mode-hook 'auto-fill-mode)
-  (setq org-startup-indented t)
-  (add-hook 'org-mode-hook
-            (lambda () (setq truncate-lines nil)))
+   (add-hook 'org-mode-hook 'auto-fill-mode)
+   (setq org-startup-indented t)
+   (add-hook 'org-mode-hook
+             (lambda () (setq truncate-lines nil)))
 
-  (setcar (nthcdr 4 org-emphasis-regexp-components) 20)
-  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+   ;; (setcar (nthcdr 4 org-emphasis-regexp-components) 20)
+   ;; (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+   )
+;;   (setq org-agenda-files '("~/Dropbox/org/gtd"))
 
-  (setq org-agenda-files '("~/Dropbox/org/gtd"))
+;;   (setq org-todo-keywords
+;;         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+;;           (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
 
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-          (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
+;;   (setq org-capture-templates
+;;         `(("i" "inbox" entry (file "~/Dropbox/org/gtd/inbox.org")
+;;            "* TODO %?")
+;;           ("b" "Billing" plain
+;;            (file+function "~/Dropbox/org/billing.org" find-month-tree)
+;;            " | %U | %^{Type} | %^{Description} | %^{Amount} |" :kill-buffer t)
+;;           ("c" "course" entry (file "~/Dropbox/org/gtd/course.org")
+;;            "* TODO %?")
+;;           ("r" "research" entry (file "~/Dropbox/org/gtd/research.org")
+;;            "* TODO %?")
+;;           ("l" "leisure" entry (file "~/Dropbox/org/gtd/leisure.org")
+;;            "* TODO %?")
+;;           ("t" "tricks" entry (file "~/Dropbox/org/gtd/tricks.org")
+;; 	         "* DONE %?")
+;;           ("p" "paper" entry (file "~/Dropbox/org/papers/papers.org")
+;;            "* TODO %(jethro/trim-citation-title \"%:title\")\n%a" :immediate-finish t)
+;;           ("e" "email" entry (file+headline "~/Dropbox/org/gtd/emails.org" "Emails")
+;;            "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
+;;           ("a" "link" entry (file "~/Dropbox/org/gtd/inbox.org")
+;;            "* TODO %(org-cliplink-capture)" :immediate-finish t)
+;;           ;;("z" "elfeed-link" entry (file "~/Dropbox/org/gtd/inbox.org")
+;;           ;; "* TODO %a\n" :immediate-finish t)
+;;           ("w" "Weekly Review" entry (file+olp+datetree "~/Dropbox/org/gtd/reviews.org")
+;;            (file "~/org/gtd/templates/weekly_review.org"))
+;;           ;;("s" "Snippet" entry (file "~/Dropbox/org/deft/capture.org")
+;;           ;;"* Snippet %<%Y-%m-%d %H:%M>\n%?")
+;;           ))
 
-  (setq org-capture-templates
-        `(("i" "inbox" entry (file "~/Dropbox/org/gtd/inbox.org")
-           "* TODO %?")
-          ("b" "Billing" plain
-           (file+function "~/Dropbox/org/billing.org" find-month-tree)
-           " | %U | %^{Type} | %^{Description} | %^{Amount} |" :kill-buffer t)
-          ("c" "course" entry (file "~/Dropbox/org/gtd/course.org")
-           "* TODO %?")
-          ("r" "research" entry (file "~/Dropbox/org/gtd/research.org")
-           "* TODO %?")
-          ("l" "leisure" entry (file "~/Dropbox/org/gtd/leisure.org")
-           "* TODO %?")
-          ("t" "tricks" entry (file "~/Dropbox/org/gtd/tricks.org")
-	         "* DONE %?")
-          ("p" "paper" entry (file "~/Dropbox/org/papers/papers.org")
-           "* TODO %(jethro/trim-citation-title \"%:title\")\n%a" :immediate-finish t)
-          ("e" "email" entry (file+headline "~/Dropbox/org/gtd/emails.org" "Emails")
-           "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
-          ("a" "link" entry (file "~/Dropbox/org/gtd/inbox.org")
-           "* TODO %(org-cliplink-capture)" :immediate-finish t)
-          ;;("z" "elfeed-link" entry (file "~/Dropbox/org/gtd/inbox.org")
-          ;; "* TODO %a\n" :immediate-finish t)
-          ("w" "Weekly Review" entry (file+olp+datetree "~/Dropbox/org/gtd/reviews.org")
-           (file "~/org/gtd/templates/weekly_review.org"))
-          ;;("s" "Snippet" entry (file "~/Dropbox/org/deft/capture.org")
-          ;;"* Snippet %<%Y-%m-%d %H:%M>\n%?")
-          ))
-
-;;   ;;An entry without a cookie is treated just like priority ' B '.
-;;   ;;So when create new task, they are default 重要且紧急
-;;   (setq org-agenda-custom-commands
-;;         '(
-;;           ("w" . "任务安排")
-;;           ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
-;;           ("wb" "重要且不紧急的任务" tags-todo "-Weekly-Monthly-Daily+PRIORITY=\"B\"")
-;;           ("wc" "不重要且紧急的任务" tags-todo "+PRIORITY=\"C\"")
-;;           ("b" "Blog" tags-todo "BLOG")
-;;           ("p" . "项目安排")
-;;           ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"cocos2d-x\"")
-;;           ("pl" tags-todo "PROJECT+DREAM+CATEGORY=\"zilongshanren\"")
-;;           ("W" "Weekly Review"
-;;            ((stuck "") ;; review stuck projects as designated by org-stuck-projects
-;;             (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
-;;             ))))
-  )
+;; ;;   ;;An entry without a cookie is treated just like priority ' B '.
+;; ;;   ;;So when create new task, they are default 重要且紧急
+;; ;;   (setq org-agenda-custom-commands
+;; ;;         '(
+;; ;;           ("w" . "任务安排")
+;; ;;           ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
+;; ;;           ("wb" "重要且不紧急的任务" tags-todo "-Weekly-Monthly-Daily+PRIORITY=\"B\"")
+;; ;;           ("wc" "不重要且紧急的任务" tags-todo "+PRIORITY=\"C\"")
+;; ;;           ("b" "Blog" tags-todo "BLOG")
+;; ;;           ("p" . "项目安排")
+;; ;;           ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"cocos2d-x\"")
+;; ;;           ("pl" tags-todo "PROJECT+DREAM+CATEGORY=\"zilongshanren\"")
+;; ;;           ("W" "Weekly Review"
+;; ;;            ((stuck "") ;; review stuck projects as designated by org-stuck-projects
+;; ;;             (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
+;; ;;             ))))
+;;   )
 
 
 ;; DO NOT NEED PYIM AGAIN
